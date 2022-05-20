@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <h2>Menu</h2>
+    <ul class="list-group">
+        {% for pizza in pizza_menu %}
+            <a href="{% url 'pizza_detail' pizza.id %}" class="list-group-item list-group-item-action">{{ pizza.name }}, {{ pizza.price }} zł</a>
+        {% endfor %}
+    </ul>
+{% endblock %}
