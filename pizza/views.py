@@ -17,7 +17,7 @@ class PizzaMenu(ListView):
 class PizzaDetailsView(DetailView):
     model = PizzaMenu
     template_name = "pizza_detail.html"
-    context_object_name = "pizza_menu"
+    context_object_name = "pizza_detail"
 
 
 class About(TemplateView):
