@@ -1,6 +1,12 @@
 {% extends "index.html" %}
 {% block content %}
-<h1>{{ pizza_detail.name }}: {{ pizza_detail.price }} zł</h1>
-<h2>{{ pizza_detail.ingredients }}</h2>
-<p>{{ pizza_detail.description }}</p>
+<div class="card" style="width: 18rem;">
+    <img src="#" class="card-img-top" alt="">
+    <div class="card-body">
+      <h5 class="card-title">{{ pizza_detail.name }}: {{ pizza_detail.price }} zł</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ pizza_detail.ingredients }}</h6>
+      <p class="card-text">{{ pizza_detail.description }}</p>
+      <a href="{% url 'menu' %}" class="btn btn-primary">Go back</a>
+    </div>
+  </div>
 {% endblock %}
