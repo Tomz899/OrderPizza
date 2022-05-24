@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from pizza.views import IndexView, PizzaMenu, About, PizzaDetailsView
+from pizza.views import IndexView, PizzaMenuList, About, PizzaDetailView
 
 urlpatterns = [
     path("", IndexView.as_view(), name="home"),
-    path("menu/", PizzaMenu.as_view(), name="menu"),
+    path("menu/", PizzaMenuList.as_view(), name="menu"),
     path("about/", About.as_view(), name="about"),
-    path("pizza_detail/<int:pk>", PizzaDetailsView.as_view(), name="pizza_detail"),
+    path("pizza/<int:pk>/", PizzaDetailView.as_view(), name="pizza_detail"),
     path("admin/", admin.site.urls),
 ]

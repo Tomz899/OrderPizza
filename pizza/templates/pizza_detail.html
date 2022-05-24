@@ -1,6 +1,6 @@
 {% extends "index.html" %}
-
 {% block content %}
-    <h2>a</h2>
-
+<h1>{{ pizza_detail.name }}: {{ pizza_detail.price }} zł</h1>
+<h2>{{ pizza_detail.ingredients }}</h2>
+<p>{{ pizza_detail.description }}</p>
 {% endblock %}
