@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView, ListView, DetailView
+from django.contrib.auth.views import LoginView, LogoutView
 from .models import PizzaMenu
 
 
@@ -22,3 +23,11 @@ class PizzaDetailView(DetailView):
 
 class About(TemplateView):
     template_name = "about.html"
+
+
+class LoginView(LoginView):
+    template_name = "login.html"
+
+
+class LogoutView(LogoutView):
+    template_name = "logout.html"
