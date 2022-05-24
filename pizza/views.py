@@ -6,7 +6,7 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
 
-class PizzaMenuList(ListView):
+class PizzaMenuListView(ListView):
     model = PizzaMenu
     template_name = "menu.html"
     context_object_name = "pizza_menu"
