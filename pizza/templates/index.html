@@ -17,7 +17,7 @@
     <!-- Your stuff: Third-party CSS libraries go here -->
 
     <!-- This file stores project-specific CSS -->
-    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+    {% comment %} <link href="{% static 'css/project.css' %}" rel="stylesheet"> {% endcomment %}
     {% endblock %}
     <!-- Le javascript
     ================================================== -->
@@ -28,7 +28,7 @@
       <!-- Your stuff: Third-party javascript libraries go here -->
 
       <!-- place project specific Javascript in this file -->
-      <script defer src="{% static 'js/project.js' %}"></script>
+      {% comment %} <script defer src="{% static 'js/project.js' %}"></script> {% endcomment %}
 
     {% endblock javascript %}
 
@@ -42,7 +42,7 @@
           <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'home' %}">Ordering Pizza App</a>
+          <a class="navbar-brand" href="{% url 'home' %}"><img src="https://img.icons8.com/external-konkapp-flat-konkapp/64/000000/external-pizza-seafood-konkapp-flat-konkapp.png" width="40" height="40"/></a>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -55,22 +55,24 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}">About</a>
               </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
               {% if request.user.is_authenticated %}
                 <li class="nav-item">
                   {# URL provided by django-allauth/account/urls.py #}
-                  <a class="nav-link" href="">My Profile {{ request.user.username }}</a>
+                  <a class="nav-link" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                    {{ request.user.username|title }}
+                  </a>
                 </li>
                 <li class="nav-item">
                   {# URL provided by django-allauth/account/urls.py #}
                   <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
               {% else %}
-                {% if ACCOUNT_ALLOW_REGISTRATION %}
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a id="sign-up-link" class="nav-link" href="">test1</a>
-              </li>
-              {% endif %}
                 <li class="nav-item">
                   {# URL provided by django-allauth/account/urls.py #}
                   <a id="log-in-link" class="nav-link" href="{% url 'login' %}">Log In</a>
@@ -95,7 +97,7 @@
       {% endif %}
 
       {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
+
       {% endblock content %}
 
     </div> <!-- /container -->
