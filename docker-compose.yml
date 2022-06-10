@@ -1,0 +1,24 @@
+version: "3.9"
+   
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=Pizza
+      - POSTGRES_USER=ukxteocz
+      - POSTGRES_PASSWORD=Fi7Ip7gILsJD_ZAekeoq6GC9Vg_hO4kc
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=ukxteocz
+      - POSTGRES_USER=ukxteocz
+      - POSTGRES_PASSWORD=Fi7Ip7gILsJD_ZAekeoq6GC9Vg_hO4kc
+    depends_on:
+      - db
