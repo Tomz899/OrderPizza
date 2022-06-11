@@ -273,3 +273,6 @@ tags
 order_pizza/media/
 
 .pytest_cache/
+
+# Docker data
+data/
