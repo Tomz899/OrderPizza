@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -12,3 +13,24 @@ class PizzaMenu(models.Model):
 
     class Meta:
         ordering = ["price"]
+
+
+class Order(models.Model):
+    product = models.ForeignKey(PizzaMenu, null=True, on_delete=models.CASCADE)
+    customer = models.ForeignKey(
+        User, null=True, on_delete=models.CASCADE, related_name="orders"
+    )
+    quantity = models.PositiveIntegerField(default=1)
+    total_price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    order_date = models.DateTimeField(auto_now_add=True)
+    in_cart = models.BooleanField(default=True)
+    completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Order #{self.id} by {self.customer.username}"
+
+    class Meta:
+        ordering = ["-order_date"]
+
+    # def get_total_price(self):
+    #     return sum(item["price"] * item["quantity"] for item in self.orders.values())
