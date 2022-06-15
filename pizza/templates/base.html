@@ -68,10 +68,13 @@
               <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
           </ul>
+
           <ul class="navbar-nav ms-auto">
             {% if request.user.is_authenticated %}
             <li class="nav-item">
-              {# URL provided by django-allauth/account/urls.py #}
+              <a class="nav-link" href="{% url 'cart' %}">Cart</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                   class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -83,12 +86,10 @@
               </a>
             </li>
             <li class="nav-item">
-              {# URL provided by django-allauth/account/urls.py #}
               <a class="btn btn-primary" class="nav-link" href="{% url 'logout' %}">Logout</a>
             </li>
             {% else %}
             <li class="nav-item">
-              {# URL provided by django-allauth/account/urls.py #}
               <a class="btn btn-primary" id="log-in-link" class="nav-link" href="{% url 'login' %}">Log In</a>
             </li>
             {% endif %}
@@ -122,42 +123,6 @@
       </div>
       {% endfor %}
       {% endif %}
-
-      <main>
-        <h1>Order your delicious pizza now!</h1>
-        <p class="fs-5 col-md-8">Don't hesitate, see our menu, pick your favorite pizza and place an order. We will take
-          care of the
-          rest! Your order will be within 30 minutes at your doors.
-        </p>
-
-        <div class="mb-5">
-          <a href="{% url 'menu' %}" class="btn btn-primary btn-lg px-4">Check our menu!</a>
-        </div>
-
-        <hr class="col-3 col-md-2 mb-5">
-
-        <div class="row g-5">
-          <div class="col-md-6">
-            <h2>Best ingredients</h2>
-            <p>Wee use only the best ingredients from our trusted suppliers.</p>
-            <ul class="icon-list ps-0">
-              <li class="d-flex align-items-start mb-1"><a href="#" rel="noopener" target="_blank">Mozzarella</a></li>
-              <li class="text-muted d-flex align-items-start mb-1">Salami</li>
-            </ul>
-          </div>
-
-          <div class="col-md-6">
-            <h2>Fast delivery</h2>
-            <p>Your order will be within 30 minutes after you place an order. If no, you will get full refund!</p>
-            <ul class="icon-list ps-0">
-              <li class="d-flex align-items-start mb-1"><a href="#">A1</a></li>
-              <li class="d-flex align-items-start mb-1"><a href="#">A2</a></li>
-              <li class="d-flex align-items-start mb-1"><a href="#">A3</a></li>
-              <li class="d-flex align-items-start mb-1"><a href="#">A4</a></li>
-            </ul>
-          </div>
-        </div>
-      </main>
 
       {% endblock content %}
 

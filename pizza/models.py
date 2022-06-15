@@ -13,6 +13,7 @@ class PizzaMenu(models.Model):
 
     class Meta:
         ordering = ["price"]
+        verbose_name_plural = "Pizza Menu"
 
 
 class Order(models.Model):
@@ -32,5 +33,5 @@ class Order(models.Model):
     class Meta:
         ordering = ["-order_date"]
 
-    # def get_total_price(self):
-    #     return sum(item["price"] * item["quantity"] for item in self.orders.values())
+    def total_price(self):
+        return sum(Order.total_price for Order.product.price in self)

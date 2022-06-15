@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+  <h1>Order your delicious pizza now!</h1>
+  <p class="fs-5 col-md-8">Don't hesitate, see our menu, pick your favorite pizza and place an order. We will take
+    care of the
+    rest! Your order will be within 30 minutes at your doors.
+  </p>
+
+  <div class="mb-5">
+    <a href="{% url 'menu' %}" class="btn btn-primary btn-lg px-4">Check our menu!</a>
+  </div>
+
+  <hr class="col-3 col-md-2 mb-5">
+
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h2>Best ingredients</h2>
+      <p>Wee use only the best ingredients from our trusted suppliers.</p>
+      <ul class="icon-list ps-0">
+        <li class="d-flex align-items-start mb-1"><a href="#" rel="noopener" target="_blank">Mozzarella</a></li>
+        <li class="text-muted d-flex align-items-start mb-1">Salami</li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Fast delivery</h2>
+      <p>Your order will be within 30 minutes after you place an order. If no, you will get full refund!</p>
+      <ul class="icon-list ps-0">
+        <li class="d-flex align-items-start mb-1"><a href="#">A1</a></li>
+        <li class="d-flex align-items-start mb-1"><a href="#">A2</a></li>
+        <li class="d-flex align-items-start mb-1"><a href="#">A3</a></li>
+        <li class="d-flex align-items-start mb-1"><a href="#">A4</a></li>
+      </ul>
+    </div>
+  </div>
+</main>
+{% endblock %}
