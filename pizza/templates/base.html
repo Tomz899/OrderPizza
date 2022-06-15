@@ -72,8 +72,12 @@
           <ul class="navbar-nav ms-auto">
             {% if request.user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'cart' %}">Cart</a>
+              <a class="nav-link position-relative" href="{% url 'cart' %}">Cart
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{orders_count}}</span>
+              </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -85,6 +89,7 @@
                 {{ request.user.username|title }}
               </a>
             </li>
+
             <li class="nav-item">
               <a class="btn btn-primary" class="nav-link" href="{% url 'logout' %}">Logout</a>
             </li>

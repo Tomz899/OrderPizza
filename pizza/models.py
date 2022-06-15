@@ -33,5 +33,8 @@ class Order(models.Model):
     class Meta:
         ordering = ["-order_date"]
 
-    def total_price(self):
-        return sum(Order.total_price for Order.product.price in self)
+    def get_total_price(self):
+        return sum(Order.product.price for Order.total_price in self.Order)
+
+    def get_cost(self):
+        return self.product.price * self.quantity

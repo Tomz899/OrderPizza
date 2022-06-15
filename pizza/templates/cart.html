@@ -2,15 +2,10 @@
 
 {% block content %}
 <h2>{{ request.user.username|title }} Cart</h2>
-<h3>Total Price: {{order.total_price}}</h3>
 
-<ul class="list-group">
-    {% for order in cart %}
-    <li class="list-group-item">{{order.product}}, Order by: {{order.customer}}, Quantity: {{order.quantity}}, Price:
-        {{order.product.price}},
-        Date: {{order.order_date}}</li>
-    {% endfor %}
-</ul>
+{% for key, value in total_pr.items %}
+<h3>Total Price: {{value|floatformat:2}} zł</h3>
+{% endfor %}
 
 <main>
     <div class="py-5 text-center">
@@ -24,7 +19,7 @@
         <div class="col-md-5 col-lg-4 order-md-last">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-primary">Your cart</span>
-                <span class="badge bg-primary rounded-pill">3</span>
+                <span class="badge bg-primary rounded-pill">{{orders_count}}</span>
             </h4>
             <ul class="list-group mb-3">
                 {% for order in cart %}
@@ -43,10 +38,12 @@
                     </div>
                     <span class="text-success">−$5</span>
                 </li>
+                {% for key, value in total_pr.items %}
                 <li class="list-group-item d-flex justify-content-between">
-                    <span>Total (USD)</span>
-                    <strong>$20</strong>
+                    <span>Total price:</span>
+                    <strong>{{value|floatformat:2}} zł</strong>
                 </li>
+                {% endfor %}
             </ul>
 
             <form class="card p-2">
