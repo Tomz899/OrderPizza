@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.db.models import Sum
 from django.views.generic import DetailView, ListView, TemplateView
@@ -23,7 +24,7 @@ class PizzaDetailView(DetailView):
     context_object_name = "pizza_detail"
 
 
-class CartListView(ListView):
+class CartListView(LoginRequiredMixin, ListView):
     model = Order
     template_name = "cart.html"
     context_object_name = "cart"
@@ -35,13 +36,14 @@ class CartListView(ListView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in a QuerySet to count all orders
+        # Add in a QuerySet to count all orders and total price filtered by user and completed=False
         context["orders_count"] = Order.objects.filter(
-            customer=self.request.user
+            customer=self.request.user, completed=False
         ).count()
         context["total_pr"] = Order.objects.filter(
-            customer=self.request.user
+            customer=self.request.user, completed=False
         ).aggregate(Sum("total_price"))
+        test_one = Order.objects.filter(customer=self.request.user)
         return context
 
 
@@ -53,5 +55,5 @@ class LoginView(LoginView):
     template_name = "login.html"
 
 
-class LogoutView(LogoutView):
+class LogoutView(LoginRequiredMixin, LogoutView):
     template_name = "logout.html"

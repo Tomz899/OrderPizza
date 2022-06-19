@@ -37,11 +37,11 @@ Use default admin user.
 
 1. Create directory for an app.
 ```sh
-mdkir oder-pizza
+mdkir OrderPizza
 ```
 2. Open up terminal within directory.
 ```sh
-cd oder-pizza
+cd OrderPizza
 ```
 3. Git clone repository: 
 ```sh
