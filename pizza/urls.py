@@ -6,6 +6,7 @@ from pizza.views import (
     HomeView,
     LoginView,
     LogoutView,
+    OrderCreateView,
     PizzaDetailView,
     PizzaMenuListView,
 )
@@ -18,4 +19,5 @@ urlpatterns = [
     path("pizza/<int:pk>/", PizzaDetailView.as_view(), name="pizza_detail"),
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
+    path("order/", OrderCreateView.as_view(), name="create"),
 ]

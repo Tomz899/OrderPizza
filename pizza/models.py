@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -33,6 +35,7 @@ class Order(models.Model):
     class Meta:
         ordering = ["-order_date"]
 
-    @property
+    # @property
     def get_item_cost(self):
-        return self.quantity * self.product.price
+        total_cost = self.quantity * self.product.price
+        return Decimal(total_cost)

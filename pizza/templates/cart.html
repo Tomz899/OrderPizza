@@ -3,11 +3,6 @@
 {% block content %}
 <h2>{{ request.user.username|title }} Cart</h2>
 
-
-{% for key, value in total_pr.items %}
-<h3>Total Price: {{value|floatformat:2}} zł</h3>
-{% endfor %}
-
 <main>
     <div class="py-5 text-center">
         <h2>Checkout form</h2>

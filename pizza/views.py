@@ -1,7 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.db.models import Sum
-from django.views.generic import DetailView, ListView, TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from .models import Order, PizzaMenu
 
@@ -56,3 +57,18 @@ class LoginView(LoginView):
 
 class LogoutView(LoginRequiredMixin, LogoutView):
     template_name = "logout.html"
+
+
+class OrderCreateView(LoginRequiredMixin, CreateView):
+    model = Order
+    template_name = "create.html"
+    fields = ["product", "quantity"]
+    success_url = reverse_lazy("cart")
+
+    def form_valid(self, form):
+        form.instance.customer = self.request.user
+        form.instance.total_price = Order.get_item_cost(self)
+        return super(OrderCreateView, self).form_valid(form)
+
+    # def get_success_url(self):
+    #     return reverse("cart")
