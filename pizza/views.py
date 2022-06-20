@@ -43,7 +43,6 @@ class CartListView(LoginRequiredMixin, ListView):
         context["total_pr"] = Order.objects.filter(
             customer=self.request.user, completed=False
         ).aggregate(Sum("total_price"))
-        test_one = Order.objects.filter(customer=self.request.user)
         return context
 
 

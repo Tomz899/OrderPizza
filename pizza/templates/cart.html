@@ -3,6 +3,7 @@
 {% block content %}
 <h2>{{ request.user.username|title }} Cart</h2>
 
+
 {% for key, value in total_pr.items %}
 <h3>Total Price: {{value|floatformat:2}} zł</h3>
 {% endfor %}
@@ -29,7 +30,7 @@
                         <h6 class="my-0">{{order.product}}</h6>
                         <small class="text-muted">Quantity: {{order.quantity}}, Date: {{order.order_date}}</small>
                     </div>
-                    <span class="text-muted">{{order.product.price}} zł</span>
+                    <span class="text-muted">{{order.get_item_cost}} zł</span>
                 </li>
                 {% endif %}
                 {% endfor %}
