@@ -66,9 +66,10 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("cart")
 
     def form_valid(self, form):
-        form.instance.customer = self.request.user
-        form.instance.total_price = Order.get_item_cost(self)
-        return super(OrderCreateView, self).form_valid(form)
+        obj = form.save(commit=False)
 
-    # def get_success_url(self):
-    #     return reverse("cart")
+        obj.customer = self.request.user
+        obj.total_price = obj.get_item_cost()
+
+        obj.save()
+        return super().form_valid(form)
