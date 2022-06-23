@@ -91,11 +91,12 @@ DATABASES = {
     "default": {
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2', for local db connection
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "ukxteocz",
+        "NAME": "Pizza",
         "USER": "ukxteocz",
         "PASSWORD": "Fi7Ip7gILsJD_ZAekeoq6GC9Vg_hO4kc",
-        "HOST": "tyke.db.elephantsql.com",
+        "HOST": "db",
         "PORT": "5432",
+        "TEST": {"NAME": "testdb"},
     }
 }
 
