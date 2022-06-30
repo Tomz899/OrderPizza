@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.db.models import Sum
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
@@ -10,35 +11,11 @@ from .models import Order, PizzaMenu
 class HomeView(TemplateView):
     template_name = "home.html"
 
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in a QuerySet to count all orders and total price filtered by user and completed=False
-        context["orders_count"] = Order.objects.filter(
-            customer=self.request.user, completed=False
-        ).count()
-        context["total_pr"] = Order.objects.filter(
-            customer=self.request.user, completed=False
-        ).aggregate(Sum("total_price"))
-        return context
-
 
 class PizzaMenuListView(ListView):
     model = PizzaMenu
     template_name = "menu.html"
     context_object_name = "pizza_menu"
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in a QuerySet to count all orders and total price filtered by user and completed=False
-        context["orders_count"] = Order.objects.filter(
-            customer=self.request.user, completed=False
-        ).count()
-        context["total_pr"] = Order.objects.filter(
-            customer=self.request.user, completed=False
-        ).aggregate(Sum("total_price"))
-        return context
 
 
 class PizzaDetailView(DetailView):
@@ -71,18 +48,6 @@ class CartListView(LoginRequiredMixin, ListView):
 
 class About(TemplateView):
     template_name = "about.html"
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in a QuerySet to count all orders and total price filtered by user and completed=False
-        context["orders_count"] = Order.objects.filter(
-            customer=self.request.user, completed=False
-        ).count()
-        context["total_pr"] = Order.objects.filter(
-            customer=self.request.user, completed=False
-        ).aggregate(Sum("total_price"))
-        return context
 
 
 class LoginView(LoginView):
@@ -119,3 +84,16 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
             customer=self.request.user, completed=False
         ).aggregate(Sum("total_price"))
         return context
+
+
+def contextData(request):
+    if not request.user.is_authenticated:
+        return JsonResponse([], safe=False)
+    elif request.user.is_active == True:
+        orders_count = Order.objects.filter(
+            customer=request.user, completed=False
+        ).count()
+        data = {
+            "orders_count": orders_count,
+        }
+        return JsonResponse(data, safe=False)
