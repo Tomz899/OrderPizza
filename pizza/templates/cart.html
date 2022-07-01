@@ -23,7 +23,8 @@
                 <li class="list-group-item d-flex justify-content-between lh-sm">
                     <div>
                         <h6 class="my-0">{{order.product}}</h6>
-                        <small class="text-muted">Quantity: {{order.quantity}}, Date: {{order.order_date}}</small>
+                        <small class="text-muted">Quantity: {{order.quantity}}, Date:
+                            {{order.order_date|date:"d.m.Y"}}</small>
                     </div>
                     <span class="text-muted">{{order.get_item_cost}} zł</span>
                     <a href="{% url 'delete' order.id %}"><span class=" text-muted"><svg
@@ -38,7 +39,7 @@
                 {% endif %}
                 {% endfor %}
 
-                <li class="list-group-item d-flex justify-content-between bg-light">
+                <li class="list-group-item d-flex justify-content-between bg-success">
                     <div class="text-primary">
                         <h6 class="my-0">Promo code</h6>
                         <small>EXAMPLECODE</small>
