@@ -3,7 +3,13 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.db.models import Sum
 from django.http import JsonResponse
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, TemplateView
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    TemplateView,
+)
 
 from .models import Order, PizzaMenu
 
@@ -53,6 +59,11 @@ class About(TemplateView):
 class LoginView(LoginView):
     template_name = "login.html"
 
+    def form_invalid(self, form):
+        context = self.get_context_data(form=form)
+        context.update({"my_message": "Something went wrong, try again."})
+        return self.render_to_response(context)
+
 
 class LogoutView(LoginRequiredMixin, LogoutView):
     template_name = "logout.html"
@@ -84,6 +95,12 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
             customer=self.request.user, completed=False
         ).aggregate(Sum("total_price"))
         return context
+
+
+class OrderDeleteView(LoginRequiredMixin, DeleteView):
+    model = Order
+    success_url = reverse_lazy("cart")
+    template_name = "order_confirm_delete.html"
 
 
 def contextData(request):
