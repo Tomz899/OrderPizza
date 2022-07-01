@@ -103,6 +103,7 @@ class OrderDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "order_confirm_delete.html"
 
 
+# Solution for not repeating get_context_data from OrderCreateView to see orders_count context across all urls
 def contextData(request):
     if not request.user.is_authenticated:
         return JsonResponse([], safe=False)
