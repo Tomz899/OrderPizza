@@ -18,10 +18,11 @@
   <link href="{% static 'bootstrap.css' %}" rel="stylesheet">
   <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
   <!-- Your stuff: Third-party CSS libraries go here -->
+  <link href="{% static 'styles.css' %}" rel="stylesheet">
 
   <!-- This file stores project-specific CSS -->
   {% comment %}
-  <link href="{% static 'css/project.css' %}" rel="stylesheet"> {% endcomment %}
+  {% endcomment %}
   {% endblock %}
   <!-- Le javascript
     ================================================== -->
@@ -35,7 +36,7 @@
 
   <!-- place project specific Javascript in this file -->
   {% comment %}
-  <script defer src="{% static 'js/project.js' %}"></script> {% endcomment %}
+  <script defer src="{% static 'project.js' %}"></script> {% endcomment %}
 
   {% endblock javascript %}
 
@@ -114,7 +115,10 @@
 
     </div>
 
+    <!-- <img class="backimage" src="{% static 'images/background_image.png' %}"> -->
+
     <div class="container">
+
 
       {% if messages %}
       {% for message in messages %}
