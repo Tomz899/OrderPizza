@@ -1,24 +1,21 @@
 version: "3.9"
-   
+
 services:
-  db:
-    image: postgres
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=Pizza
-      - POSTGRES_USER=ukxteocz
-      - POSTGRES_PASSWORD=Fi7Ip7gILsJD_ZAekeoq6GC9Vg_hO4kc
   web:
     build: .
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: python /code/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
-    environment:
-      - POSTGRES_NAME=Pizza
-      - POSTGRES_USER=ukxteocz
-      - POSTGRES_PASSWORD=Fi7Ip7gILsJD_ZAekeoq6GC9Vg_hO4kc
+      - 8000:8000
     depends_on:
       - db
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+volumes:
+  postgres_data:

@@ -1,5 +1,5 @@
 # Pull base image
-FROM python:3.8.13-bullseye
+FROM python:3.9-bullseye
 
 # Set environment variables
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
@@ -11,6 +11,7 @@ WORKDIR /code
 
 # Install dependencies
 COPY requirements.txt /code/
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Copy project
