@@ -276,3 +276,5 @@ order_pizza/media/
 
 # Docker data
 data/
+
+.prettierignore
