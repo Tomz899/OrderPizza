@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = "pizza.User"
+AUTH_USER_MODEL = "pizza.CustomUser"
 
 # Application definition
 

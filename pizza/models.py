@@ -1,15 +1,20 @@
 from decimal import Decimal
 
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from pizza.managers import CustomUserManager
 
-class User(AbstractUser):
-    name = models.CharField(max_length=100, null=True)
+
+class CustomUser(AbstractUser):
+    username = None
     email = models.EmailField(unique=True, null=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
 
     def __str__(self):
         return self.email
@@ -32,7 +37,10 @@ class PizzaMenu(models.Model):
 class Order(models.Model):
     product = models.ForeignKey(PizzaMenu, null=True, on_delete=models.CASCADE)
     customer = models.ForeignKey(
-        User, null=True, on_delete=models.CASCADE, related_name="orders"
+        settings.AUTH_USER_MODEL,
+        null=True,
+        on_delete=models.CASCADE,
+        related_name="orders",
     )
     quantity = models.PositiveIntegerField(default=1)
     total_price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
