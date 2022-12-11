@@ -11,6 +11,7 @@ from django.views.generic import (
     TemplateView,
 )
 
+from .forms import CustomUserForm
 from .models import Order, PizzaMenu
 
 
