@@ -10,6 +10,7 @@ from pizza.views import (
     OrderDeleteView,
     PizzaDetailView,
     PizzaMenuListView,
+    SignUpView,
     contextData,
 )
 
@@ -20,6 +21,7 @@ urlpatterns = [
     path("cart/", CartListView.as_view(), name="cart"),
     path("pizza/<int:pk>/", PizzaDetailView.as_view(), name="pizza_detail"),
     path("login/", LoginView.as_view(), name="login"),
+    path("signup/", SignUpView.as_view(), name="signup"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("order/", OrderCreateView.as_view(), name="create"),
     path("delete/<int:pk>/", OrderDeleteView.as_view(), name="delete"),

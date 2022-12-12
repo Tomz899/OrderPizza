@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Sum
 from django.http import JsonResponse
 from django.urls import reverse_lazy
@@ -11,7 +12,7 @@ from django.views.generic import (
     TemplateView,
 )
 
-from .forms import CustomUserForm
+from .forms import CustomUserCreationForm
 from .models import Order, PizzaMenu
 
 
@@ -116,3 +117,10 @@ def contextData(request):
             "orders_count": orders_count,
         }
         return JsonResponse(data, safe=False)
+
+
+class SignUpView(SuccessMessageMixin, CreateView):
+    template_name = "register.html"
+    success_url = reverse_lazy("login")
+    form_class = CustomUserCreationForm
+    success_message = "Your profile was created successfully"
