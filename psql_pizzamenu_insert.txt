@@ -1,0 +1,14 @@
+INSERT INTO pizza_pizzamenu (name, description, ingredients, price) VALUES ('Margheritta', 'A classic pizza with a 
+cyberpunk twist, featuring fresh mozzarella and a unique cyberpunk-inspired tomato sauce.', 'Dough, Cyberpunk Tomato 
+Sauce, Mozzarella, Basil', 11.90),
+	   ('Neon-Pepperoni', 'A futuristic twist on a classic favorite, with neon-colored pepperoni and 
+cyberpunk-inspired toppings.', 'Dough, Tomato Sauce, Mozzarella, Pepperoni, Cyberpunk Toppings', 12.90),
+       ('Quantum-Quattro-Formaggi', 'A cheese lover''s dream, with four types of premium cyberpunk cheeses.', 'Dough, 
+Tomato Sauce, Mozzarella, Gorgonzola, Feta, Parmesan, Cyberpunk Cheeses', 14.90),
+       ('Robo-Ranch', 'A robotic twist on a classic ranch-style pizza, with cyberpunk-inspired toppings.', 'Dough, 
+Tomato Sauce, Mozzarella, Ranch Dressing, Bacon, Cyberpunk Toppings', 15.90),
+       ('Chrome-Chicken', 'A high-tech take on a classic chicken pizza, with chrome-colored chicken and 
+cyberpunk-inspired toppings.', 'Dough, Tomato Sauce, Mozzarella, Chicken, Cyberpunk Toppings', 16.90),
+       ('Vortex-Veggie', 'A cyberpunk-inspired pizza packed with fresh vegetables and a unique, swirling sauce.', 
+'Dough, Tomato Sauce, Mozzarella, Spinach, Bell Peppers, Onions, Cyberpunk Toppings', 19.90);
+s
