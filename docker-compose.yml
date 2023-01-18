@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
   db:
+    platform: linux/amd64
     image: postgres:15.1-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
@@ -13,8 +14,11 @@ services:
     ports:
       - "5432:5432"
   web:
+    platform: linux/amd64
     build: .
-    command: bash -c "python /code/manage.py makemigrations && python /code/manage.py migrate && python /code/manage.py runserver 0.0.0.0:8000"
+    command: sh -c "python /code/manage.py makemigrations &&
+                    python /code/manage.py migrate &&
+                    python /code/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
     ports:
