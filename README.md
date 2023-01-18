@@ -24,7 +24,8 @@ Use default admin user.
 
 ## Technologies Used
 
-- Python 3.8
+- Python 3.12
+- PostgreSQL 15.1
 - Django 4.0.4
 - crispy-bootstrap5 0.6
 - django-crispy-forms 1.14.0
@@ -36,23 +37,31 @@ Use default admin user.
 ## Setup
 
 1. Create directory for an app.
+
 ```sh
 mdkir OrderPizza
 ```
+
 2. Open up terminal within directory.
+
 ```sh
 cd OrderPizza
 ```
-3. Git clone repository: 
+
+3. Git clone repository:
+
 ```sh
 git clone https://github.com/Tomz899/OrderPizza.git
 ```
 
 4. In project directory use docker command to build, start and attach containers for service.
+
 ```sh
 docker-compose up
 ```
+
 5. Open browser and type:
+
 ```sh
 localhost:8000
 ```
