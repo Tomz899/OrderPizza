@@ -7,10 +7,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - "POSTGRES_DB=postgres"
-      - "POSTGRES_USER=postgres"
-      - "POSTGRES_PASSWORD=postgres"
-    hostname: db
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
     ports:
       - "5432:5432"
   web:
@@ -24,9 +23,9 @@ services:
     ports:
       - 8000:8000
     environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_NAME=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
     depends_on:
       - db
 
